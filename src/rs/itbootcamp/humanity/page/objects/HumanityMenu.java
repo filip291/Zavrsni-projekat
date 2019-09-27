@@ -6,14 +6,16 @@ import org.openqa.selenium.WebElement;
 
 public class HumanityMenu {
 	public static final String URL = "https://srbijainc.humanity.com/app/dashboard/";
-	public static final String DASHBOARD_XPATH = "//a[@id='sn_dashboard']//span[@class='primNavQtip__inner']";
-	public static final String SHIFT_PLANNING_XPATH = "//a[@id='sn_schedule']//span[@class='primNavQtip__inner']";
-	public static final String CLOCK_XPATH = "//a[@id='sn_timeclock']//span[@class='primNavQtip__inner']";
-	public static final String LEAVE_XPATH = "//a[@id='sn_requests']//span[@class='primNavQtip__inner']";
-	public static final String TRAINING_XPATH = "//a[@id='sn_training']//span[@class='primNavQtip__inner']";
-	public static final String STAFF_XPATH = "//a[@id='sn_staff']//span[@class='primNavQtip__inner']";
-	public static final String PAYROLL_XPATH = "//a[@id='sn_payroll']//span[@class='primNavQtip__inner']";
-	public static final String REPORTS_XPATH = "//a[@id='sn_reports']//span[@class='primNavQtip__inner']";
+	private static final String SETTINGS_URL="https://srbijainc.humanity.com/app/admin/settings/";
+	private static final String DASHBOARD_XPATH = "//a[@id='sn_dashboard']//span[@class='primNavQtip__inner']";
+	private static final String SHIFT_PLANNING_XPATH = "//a[@id='sn_schedule']//span[@class='primNavQtip__inner']";
+	private static final String CLOCK_XPATH = "//a[@id='sn_timeclock']//span[@class='primNavQtip__inner']";
+	private static final String LEAVE_XPATH = "//a[@id='sn_requests']//span[@class='primNavQtip__inner']";
+	private static final String TRAINING_XPATH = "//a[@id='sn_training']//span[@class='primNavQtip__inner']";
+	private static final String STAFF_XPATH = "//a[@id='sn_staff']//span[@class='primNavQtip__inner']";
+	private static final String PAYROLL_XPATH = "//a[@id='sn_payroll']//span[@class='primNavQtip__inner']";
+	private static final String REPORTS_XPATH = "//a[@id='sn_reports']//span[@class='primNavQtip__inner']";
+	private static final String SETTINGS_XPATH= "//a[@id='sn_admin']";
 
 	// click dashboard
 	public static WebElement getDashboard(WebDriver driver) {
@@ -86,5 +88,20 @@ public class HumanityMenu {
 	public static void clickReports(WebDriver driver) {
 		getReports(driver).click();
 	}
-
+	// click settings 
+	public static WebElement getSettings(WebDriver driver) {
+		return driver.findElement(By.xpath(SETTINGS_XPATH));
+	}
+	public static void clickSettings(WebDriver driver) {
+		getSettings(driver).click();
+	}
+	public static boolean getSettingsTest(WebDriver driver) {
+		clickSettings(driver);
+		String url;
+		url=driver.getCurrentUrl();
+		if (url.contains(SETTINGS_URL)) {
+			return true;
+		}else return false;
+	}
+	
 }

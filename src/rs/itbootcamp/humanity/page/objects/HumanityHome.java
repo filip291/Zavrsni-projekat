@@ -1,5 +1,7 @@
 package rs.itbootcamp.humanity.page.objects;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -65,27 +67,41 @@ public class HumanityHome {
 	public static void clickLogin(WebDriver driver) {
 		getLogin(driver).click();
 	}
+	// email set
 	public static WebElement getEmail(WebDriver driver) {
 		return driver.findElement(By.xpath(EMAIL_XPATH));
 	}
 	public static void inputEmail(WebDriver driver, String data) {
 		getEmail(driver).sendKeys(data);
 	}
+	// password
 	public static WebElement getPassword(WebDriver driver) {
 		return driver.findElement(By.xpath(PASSWORD_XPATH));
 	}
 	public static void inputPassword(WebDriver driver, String data) {
 		getPassword(driver).sendKeys(data);
 	}
+	// submit login
 	public static WebElement getSLogin(WebDriver driver) {
 		return driver.findElement(By.xpath(SUBMIT_LOGIN_XPATH));
 	}
 	public static void clickSLogin(WebDriver driver) {
 		getSLogin(driver).click();
 	}
+	// login sve zajedno 
+	public static void Login(WebDriver driver, String email, String password) {
+		driver.get(HumanityHome.URL);
+		driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+		driver.manage().window().maximize();
+		getLogin(driver).click();
+		inputEmail(driver, email);
+		inputPassword(driver, password);
+		getSLogin(driver).click();
+	}
+	// test login
 	public static boolean LoginTest(WebDriver driver) {
 		String url = driver.getCurrentUrl();
-		if (url == URL_TEST) {
+		if (url.equalsIgnoreCase(URL_TEST)) {
 			System.out.println("Logovanje uspesno.");
 			return true;
 		} else {

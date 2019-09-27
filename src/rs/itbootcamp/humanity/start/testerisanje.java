@@ -1,63 +1,46 @@
 package rs.itbootcamp.humanity.start;
 
 import java.beans.Expression;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.touch.ScrollAction;
+import org.testng.Assert;
+import org.testng.TestNG;
 
+import rs.itbootcamp.humanity.page.objects.HumanityEditStaff;
 import rs.itbootcamp.humanity.page.objects.HumanityHome;
 import rs.itbootcamp.humanity.page.objects.HumanityMenu;
+import rs.itbootcamp.humanity.page.objects.HumanityProfile;
+import rs.itbootcamp.humanity.page.objects.HumanitySettings;
 import rs.itbootcamp.humanity.page.objects.HumanityStaff;
-import rs.itbootcamp.humanity.page.tests.HumanityLoginTest;
+import rs.itbootcamp.humanity.page.tests.EmployeesListTestNG;
+import rs.itbootcamp.humanity.page.tests.GetSettingsTestNG;
+import rs.itbootcamp.humanity.page.tests.HumanityGetVersionTestNG;
+import rs.itbootcamp.humanity.page.tests.LoginTestNG;
+import rs.itbootcamp.humanity.page.tests.SelectSettingsTestNG;
+import rs.itbootcamp.humanity.page.utility.ExcelUtils;
 
 public class testerisanje {
 
 	public static void main(String[] args) throws InterruptedException {
-		System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
-		WebDriver driver = new FirefoxDriver();
+		// System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
+		// WebDriver driver = new FirefoxDriver();
+		System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+		// WebDriver driver = new ChromeDriver();
 
-		driver.get(HumanityHome.URL);
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		//1. test
-		try {
-		HumanityHome.getLogin(driver);
-		HumanityHome.clickLogin(driver);
-		HumanityHome.getEmail(driver);
-		HumanityHome.inputEmail(driver, "beve@web-inc.net");
-		HumanityHome.getPassword(driver);
-		HumanityHome.inputPassword(driver, "filip1234");
-		HumanityHome.getSLogin(driver);
-		HumanityHome.clickSLogin(driver);
-		Thread.sleep(3000);
-		HumanityLoginTest.LoginTest(driver); 
-		System.out.println(HumanityLoginTest.LoginTest(driver));
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-		
-		//2. test
-		try {
-		HumanityMenu.getStaff(driver);
-		HumanityMenu.clickStaff(driver);
-		Thread.sleep(3000);
-		HumanityStaff.clickAddEmployees(driver);
-		int index=1;
-		HumanityStaff.getAddEmployeeF(driver, index);
-		HumanityStaff.inputFirstName(driver, index, "Marko");
-		HumanityStaff.getAddEmployeeL(driver, index);
-		HumanityStaff.inputLastName(driver, index, "Kraljevic");
-		HumanityStaff.getAddEmployeeE(driver, index);
-		HumanityStaff.inputEmail(driver, index, "asdas@gmail.com");
-		HumanityStaff.clickSaveEmployee(driver); } 
-		catch (Exception e) { 
-			System.out.println();
-		}
-		
+		TestNG testng = new TestNG();
+		List<String> suites = new ArrayList<>();
+		suites.add("C:\\Users\\User\\Desktop\\sel\\testng.xml");
+		testng.setTestSuites(suites);
+		testng.run();
 
 	}
-
-	
 
 }
