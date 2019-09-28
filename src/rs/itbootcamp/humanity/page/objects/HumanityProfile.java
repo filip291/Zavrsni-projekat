@@ -15,7 +15,7 @@ public class HumanityProfile {
 	private static final String VERSION_XPATH = "//div[@id='humanityAppVersion']";
 	private static final String EDIT_DETAILS_XPATH = "//a[contains(text(),'Edit Details')]";
 	private static final String SAVE_CHG_XPATH = "//td[@colspan='2']//input[@value='Save Employee']";
-	//private static final String NO_AVATAR_URL = "https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png";
+	private static final String NO_AVATAR_URL = "https://d3l54fgzztlejs.cloudfront.net/app/layout/images/no_avatar.png";
 	//private static final String NO_AVATAR_CLASS = "j-user-avatar-settings";
 
 	public static WebElement getDetails(WebDriver driver) {
